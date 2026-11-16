@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int nbr_batterie = 0;
-    [SerializeField] private int max_batterie = 3;
+    [SerializeField] public int nbr_batterie = 0;
+    [SerializeField] public int max_batterie = 3;
     [SerializeField] private Text ui_batterie;
 
     public static GameManager instance;
