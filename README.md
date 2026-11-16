@@ -19,7 +19,7 @@ Nous avons mis en place les bases du projet pour faciliter les prochaines itéra
 
 Kevin|Arias|Jayden
 ---|---|---
-Décors|Environnement & Caméra|Personnage & Interaction 3D
+Décors & Scripts intéractif | Environnement 3D & Caméra | Personnage & Environnement 3D
 
 ## Ressources externes
 
