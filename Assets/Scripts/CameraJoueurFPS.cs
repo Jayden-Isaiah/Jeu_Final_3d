@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 // Camera a la premiere personne : placee a la hauteur des yeux (enfant du joueur).
 // La souris tourne le corps du joueur (gauche/droite) et la camera (haut/bas).
-// Echap libere le curseur; clic gauche le recapture.
+// Echap est reserve au menu de pause (GestionnairePause). Pendant la pause, la camera ne bouge pas.
+// Si le curseur est libere (ex. Alt+Tab), un clic gauche le recapture.
 public class CameraJoueurFPS : MonoBehaviour
 {
     [Header("References")]
@@ -50,6 +51,9 @@ public class CameraJoueurFPS : MonoBehaviour
 
     private void Update()
     {
+        // Pendant la pause, le menu gere le curseur : la camera ne fait rien.
+        if (GestionnairePause.EstEnPause) return;
+
         GererCurseur();
         if (Cursor.lockState != CursorLockMode.Locked) return;
 
@@ -83,14 +87,11 @@ public class CameraJoueurFPS : MonoBehaviour
     private void GererCurseur()
     {
 #if ENABLE_INPUT_SYSTEM
-        bool echap = Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame;
         bool clic = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
 #else
-        bool echap = Input.GetKeyDown(KeyCode.Escape);
         bool clic = Input.GetMouseButtonDown(0);
 #endif
-        if (echap) VerrouillerCurseur(false);
-        else if (clic && Cursor.lockState != CursorLockMode.Locked) VerrouillerCurseur(true);
+        if (clic && Cursor.lockState != CursorLockMode.Locked) VerrouillerCurseur(true);
     }
 
     private void VerrouillerCurseur(bool verrouille)

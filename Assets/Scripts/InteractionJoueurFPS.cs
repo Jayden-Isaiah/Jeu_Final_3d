@@ -27,6 +27,13 @@ public class InteractionJoueurFPS : MonoBehaviour
 
     private void Update()
     {
+        // Pendant la pause : pas d'interaction et pas de message a l'ecran.
+        if (GestionnairePause.EstEnPause)
+        {
+            AfficherTexte(null);
+            return;
+        }
+
         cibleActuelle = ChercherCible();
         AfficherTexte(cibleActuelle);
 
